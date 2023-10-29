@@ -12,6 +12,13 @@ Survey_name_column = 'D' #총회 참석 이름 열
 Survey_number_column = 'E' #총회 참석 학번 열
 Survey_column = 'B' #총회 참석 유무 열
 
+# 엑셀 파일 불러오기
+address_Workbook = openpyxl.load_workbook("C:/Users/--/Downloads/MR 주소록.xlsx")
+Survey_results = openpyxl.load_workbook("C:/Users/--/Downloads/2023 MR 총회 참석 여부 조사 설문(응답).xlsx")
+#시트 불러오기
+address_sheet = address_Workbook['시트1']
+Survey_results_sheet = Survey_results['시트1']
+
 class Hash_table:
     def __init__(self, length = 5):
         self.max_len = length
@@ -48,13 +55,7 @@ class Hash_table:
 
 hash_table = Hash_table(row_length)
 
-# 엑셀 파일 불러오기
-address_Workbook = openpyxl.load_workbook("C:/Users/ljbli/Downloads/MR 주소록.xlsx")
-Survey_results = openpyxl.load_workbook("C:/Users/ljbli/Downloads/2023 MR 총회 참석 여부 조사 설문(응답).xlsx")
-#시트 불러오기
-address_sheet = address_Workbook['시트1']
-Survey_results_sheet = Survey_results['시트1']
-
+#----------------------------------------------------------------------------------------#
 
 #해시 테이블 입력
 for row in range(2,row_length+1):
@@ -75,4 +76,4 @@ for i in range(2, Survey_row_length+1):
             address_sheet[write_column+str(row)] = 'X'
     else:
         print(Survey_results_sheet[Survey_name_column+str(i)].value)
-address_Workbook.save("C:/Users/ljbli/Downloads/MR 주소록.xlsx")
+address_Workbook.save("C:/Users/--/Downloads/MR 주소록.xlsx")
